@@ -1,5 +1,6 @@
 package com.produto.produto.entity;
 
+import com.produto.produto.enums.ProdRole;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
@@ -19,14 +20,19 @@ public class ProdutoEntity {
 
     private Integer estoque;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
+    private ProdRole role;
+
     public ProdutoEntity() {
     }
 
-    public ProdutoEntity(Long id, String nome, BigDecimal preco, Integer estoque) {
+    public ProdutoEntity(Long id, String nome, BigDecimal preco, Integer estoque, ProdRole role) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.estoque = estoque;
+        this.role = role;
     }
 
     public Long getId() {
@@ -60,4 +66,8 @@ public class ProdutoEntity {
     public void setEstoque(Integer estoque) {
         this.estoque = estoque;
     }
+
+    public ProdRole getRole() { return role; }
+
+    public void setRole(ProdRole role) { this.role = role; }
 }
