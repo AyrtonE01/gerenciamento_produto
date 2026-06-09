@@ -1,12 +1,8 @@
 package com.produto.produto.service;
 
-import com.produto.produto.controller.ProdutoController;
 import com.produto.produto.entity.ProdutoEntity;
 import com.produto.produto.repository.ProdutoRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -33,10 +29,5 @@ public class ProdutoService {
 
     public void deletar(Long id) {
         repository.deleteById(id);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return ProdutoRepository.findByLogin(username);
     }
 }
