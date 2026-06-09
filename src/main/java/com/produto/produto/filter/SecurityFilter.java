@@ -18,14 +18,15 @@ public class SecurityFilter {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(HttpMethod.GET, "/produtos").permitAll()
-                                // essas são as rotas publicas (que são permitidas sem a autenticação)
-                                .requestMatchers(HttpMethod.POST, "/produtos").permitAll()
-                                .requestMatchers(HttpMethod.DELETE, "/produtos/{id}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/produtos/**").permitAll()
+                        auth.requestMatchers("/produtos/**").authenticated()
+                                // essas são as rotas públicas (que são permitidas sem a autenticação)
+                                //.requestMatchers(HttpMethod.POST, "/produtos").permitAll()
+                                //.requestMatchers(HttpMethod.DELETE, "/produtos/{id}").permitAll()
+                                //.requestMatchers(HttpMethod.GET, "/produtos/**").permitAll()
                                 // já essa é a outra rota (que inclui GET /usuarios) no qual exigira a autenticação
                                 .anyRequest().authenticated()
                 )
+                .httpBasic(httpBasic -> {})
                 .build();
     }
 }

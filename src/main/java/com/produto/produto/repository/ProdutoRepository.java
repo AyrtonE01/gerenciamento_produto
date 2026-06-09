@@ -6,5 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
 
-    static UserDetails findByLogin(String role);
+    static UserDetails findByLogin(String role) {
+        return null;
+    }
 }
